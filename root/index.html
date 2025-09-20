@@ -1,13 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pomodoro Timer</title>
-    <link rel="stylesheet" href="css/index.css">
-    <script src="scripts/index.js" defer></script>
-</head>
-<body>
-    <h1>Pomodoro Timer</h1>
-</body>
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Pomodoro Timer</title>
+        <link rel="stylesheet" href="css/index.css">
+        <script type="module" src="scripts/pomodoro.js" defer></script>
+    </head>
+
+    <body>
+        <header>
+            <h1>Pomodoro Timer</h1>
+            <h2>For studies, work, and other stuff!</h2>
+        </header>
+
+        <main>
+            <canvas></canvas>
+
+            <div id="initialChoices">
+                <p id="workText"></p>
+                <input id="workRange" type="range" min="5" max="60" value="45" step="5">
+
+                <p id="pauseText"></p>
+                <input id="pauseRange" type="range" min="0" max="30" value="15" step="5">
+
+                <p id="iterationText"></p>
+                <input id="iterationRange" type="range" min="0" max="8" value="3" step="1">
+                <br>
+                <button id="confirmBtn">Confirm</button>
+            </div>
+        </main>
+
+        <footer></footer>
+    </body>
+
 </html>
