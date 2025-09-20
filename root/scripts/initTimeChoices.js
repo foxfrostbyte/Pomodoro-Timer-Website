@@ -6,8 +6,8 @@ let pauseMin = 0;
 let repeats = 0;
 
 // Work range logic:
-let workText = document.getElementById("workText")
-let workRange = document.getElementById("workRange");
+const workText = document.getElementById("workText")
+const workRange = document.getElementById("workRange");
 workText.innerText = ("Work: " + workRange.value + " min");
 
 workRange.addEventListener("input", () => {
@@ -15,8 +15,8 @@ workRange.addEventListener("input", () => {
 });
 
 // Pause range logic:
-let pauseText = document.getElementById("pauseText")
-let pauseRange = document.getElementById("pauseRange");
+const pauseText = document.getElementById("pauseText")
+const pauseRange = document.getElementById("pauseRange");
 pauseText.innerText = ("Pause: " + pauseRange.value + " min");
 
 pauseRange.addEventListener("input", () => {
@@ -24,8 +24,8 @@ pauseRange.addEventListener("input", () => {
 });
 
 // Iteration range logic:
-let iterationText = document.getElementById("iterationText")
-let iterationRange = document.getElementById("iterationRange");
+const iterationText = document.getElementById("iterationText")
+const iterationRange = document.getElementById("iterationRange");
 iterationText.innerText = ("Repeat: " + iterationRange.value + " times");
 
 iterationRange.addEventListener("input", () => {
@@ -33,8 +33,8 @@ iterationRange.addEventListener("input", () => {
 });
 
 // Confirm choices logic:
-let confirmButton = document.getElementById("confirmBtn");
-let choices = document.getElementById("initialChoices");
+const confirmButton = document.getElementById("confirmBtn");
+const choices = document.getElementById("initialChoices");
 
 confirmButton.addEventListener("click", () => {
     workMin = workRange.value;
