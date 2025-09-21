@@ -1,0 +1,56 @@
+@import url('https://fonts.googleapis.com/css2?family=Coming+Soon&family=Lora:ital,wght@0,400..700;1,400..700&display=swap');
+
+:root {
+    --backgroundColor: rgb(176, 125, 58);
+    --backgroundColorHover: rgb(145, 77, 37);
+    --backgroundColorClick: rgb(105, 25, 21);
+    --fontColor: white;
+}
+
+html * {
+    font-family: coming soon;
+    color: var(--fontColor);
+}
+
+body {
+    background-color: var(--backgroundColor);
+    margin: 4rem;
+}
+
+.textAndRange {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+
+h1 {
+    font-size: 2.4rem;
+}
+
+.textAndRange label {
+    font-weight: bold;
+    font-size: 1.2rem;
+    width: 10rem;
+}
+
+#confirmBtn {
+    font-weight: bold;
+    font-size: 1.2rem;
+    padding: 1rem;
+    background-color: var(--backgroundColor);
+    border-radius: 0.15rem;
+    border-width: 0.3rem;
+    border-style: double;
+    border-color: var(--fontColor);
+    transition: transform 0.3s ease;
+}
+
+#confirmBtn:hover {
+    transform: scale(1.05);
+    background-color: var(--backgroundColorHover);
+}
+
+#confirmBtn:active {
+    background-color: var(--backgroundColorClick);
+}
