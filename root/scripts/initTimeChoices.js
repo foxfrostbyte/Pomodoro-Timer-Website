@@ -1,9 +1,10 @@
 "use strict";
 
-// HTML template injected:
+// HTML template used:
 const choices = document.getElementById("initialChoices");
 
-choices.innerHTML =`
+choices.innerHTML =
+    `
     <br><br>
     <div class="textAndRange">
         <label id="workText" for="workRange"></label>
@@ -19,10 +20,10 @@ choices.innerHTML =`
         <label id="iterationText" for="iterationRange"></label>
         <input id="iterationRange" type="range" min="0" max="8" value="3" step="1">
     </div>
-    <br><br>
-    <button id="confirmBtn">Confirm</button>`
+    <br><br><hr><br>
+    <button id="confirmBtn">Confirm</button>
+    `
 ;
-
 
 // Chosen time:
 let workMin = 0;
@@ -58,11 +59,16 @@ iterationRange.addEventListener("input", () => {
 
 // Confirm choices logic:
 const confirmButton = document.getElementById("confirmBtn");
-
 confirmButton.addEventListener("click", () => {
     workMin = workRange.value;
     pauseMin = pauseRange.value;
     repeats = iterationRange.value;
+
+    const event = new CustomEvent("choicesConfirmed", {
+        detail: {workMin, pauseMin, repeats}
+    });
+
+    document.dispatchEvent(event);
 
     choices.style.display = "none";
 });

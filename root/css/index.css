@@ -54,3 +54,39 @@ h1 {
 #confirmBtn:active {
     background-color: var(--backgroundColorClick);
 }
+
+/* Code for pomodoro clock UI: */
+#textAndTimer {
+    display: block;
+    width: auto;
+    text-align: left;
+}
+
+#timerText {
+    font-size: 1.9rem;
+}
+
+#timer {
+    font-size: 3.3rem;
+}
+
+#pauseResumeBtn {
+    font-weight: bold;
+    font-size: 1.2rem;
+    padding: 1rem;
+    background-color: var(--backgroundColor);
+    border-radius: 0.15rem;
+    border-width: 0.3rem;
+    border-style: double;
+    border-color: var(--fontColor);
+    transition: transform 0.3s ease;
+}
+
+#pauseResumeBtn:hover {
+    transform: scale(1.05);
+    background-color: var(--backgroundColorHover);
+}
+
+#pauseResumeBtn:active {
+    background-color: var(--backgroundColorClick);
+}
