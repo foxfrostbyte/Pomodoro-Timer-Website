@@ -18,9 +18,12 @@ choices.innerHTML =
     <br><br>
     <div class="textAndRange">
         <label id="iterationText" for="iterationRange"></label>
-        <input id="iterationRange" type="range" min="0" max="8" value="3" step="1">
+        <input id="iterationRange" type="range" min="1" max="8" value="3" step="1">
     </div>
-    <br><br><hr><br>
+    <br>
+    <p>Note: If pause is 0 min, iterations is fixed to 1, and vice versa.</p>
+    <p>Example: 45min work, 15min pause, and 3 iterations will yield 3x45min work and 2x15min pause in between those 3 sessions.</p>
+    <hr><br>
     <button id="confirmBtn">Confirm</button>
     `
 ;
@@ -28,7 +31,7 @@ choices.innerHTML =
 // Chosen time:
 let workMin = 0;
 let pauseMin = 0;
-let repeats = 0;
+let iterations = 0;
 
 // Work range logic:
 const workText = document.getElementById("workText")
@@ -46,15 +49,43 @@ pauseText.innerText = ("Pause: " + pauseRange.value + " min");
 
 pauseRange.addEventListener("input", () => {
     pauseText.textContent = "Pause: " + pauseRange.value + " min";
+
+    if (pauseRange.value === "0") {
+        iterationRange.value = 1;
+        iterationRange.disabled = true;
+        iterationText.textContent = "Iterations: " + iterationRange.value;
+    }
+    else {
+        if(iterationRange.value === "1") {
+            iterationRange.value = 2;
+            iterationText.textContent = "Iterations: " + iterationRange.value;
+        }
+        iterationRange.disabled = false;
+        pauseText.textContent = "Pause: " + pauseRange.value + " min";
+    }
 });
 
 // Iteration range logic:
 const iterationText = document.getElementById("iterationText")
 const iterationRange = document.getElementById("iterationRange");
-iterationText.innerText = ("Repeat: " + iterationRange.value + " times");
+iterationText.innerText = ("Iterations: " + iterationRange.value);
 
 iterationRange.addEventListener("input", () => {
-    iterationText.textContent = "Repeat: " + iterationRange.value + " times";
+    iterationText.textContent = "Iterations: " + iterationRange.value;
+
+    if (iterationRange.value === "1") {
+        pauseRange.value = 0;
+        pauseRange.disabled = true;
+        pauseText.textContent = "Pause: " + pauseRange.value + " min";
+    }
+    else {
+        if (pauseRange.value === "0") {
+            pauseRange.value = 5;
+            pauseText.textContent = "Pause: " + pauseRange.value + " min";
+        }
+        pauseRange.disabled = false;
+        iterationText.textContent = "Iterations: " + iterationRange.value;
+    }
 });
 
 // Confirm choices logic:
@@ -62,10 +93,10 @@ const confirmButton = document.getElementById("confirmBtn");
 confirmButton.addEventListener("click", () => {
     workMin = workRange.value;
     pauseMin = pauseRange.value;
-    repeats = iterationRange.value;
+    iterations = iterationRange.value;
 
     const event = new CustomEvent("choicesConfirmed", {
-        detail: {workMin, pauseMin, repeats}
+        detail: {workMin, pauseMin, iterations}
     });
 
     document.dispatchEvent(event);

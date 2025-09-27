@@ -8,9 +8,10 @@ import "./initTimeChoices.js";
 document.addEventListener("choicesConfirmed", (event) => {
     const pomodoroTimerHTML = document.getElementById("pomodoroTimer");
     
-    const {workMin, pauseMin, repeats} = event.detail;
+    const {workMin, pauseMin, iterations} = event.detail;
 
-    let currentRepeat = repeats;
+    let currentIteration = iterations;
+    let numPauses = iterations - 1;
 
     pomodoroTimerHTML.innerHTML = 
         `
@@ -30,45 +31,44 @@ document.addEventListener("choicesConfirmed", (event) => {
 
     startTimer()
 
+    // Starting the timer:
     function startTimer() {
 
-    // Setting initial timer mode:
-    let isWork = true;
-    let isPause = false;
+        let isWork = true;
+        let isPause = false;
 
-    let timeLeft = workMin * 60;
-    timerText.textContent = "Work left:";
+        let timeLeft = workMin * 60;
+        timerText.textContent = "Work left:";
 
-    function updateTimer() {
-        
-        if (isPause) {
-            return;
-        }
+        // Updating the timer:
+        function updateTimer() {
 
-        let minutes = Math.floor(timeLeft / 60);
-        let seconds = timeLeft % 60;
+            let minutes = Math.floor(timeLeft / 60);
+            let seconds = timeLeft % 60;
 
-        timer.textContent = String(minutes).padStart(2, '0') + ":" + String(seconds).padStart(2, '0');
-        
-        if (timeLeft > 0) {
-            timeLeft--;
-        }
-        else {
-            clearInterval(timerInterval);
-
-            if (isWork) {
-                isWork = false;
-                isPause = true;
-                timeLeft = pauseMin * 60;
-                startTimer();
+            timer.textContent = String(minutes).padStart(2, '0') + ":" + String(seconds).padStart(2, '0');
+            
+            if (timeLeft > 0) {
+                timeLeft--;
             }
+
             else {
-                isWork = true;
-                timeLeft = workSec;
-                startTimer();
+                currentIteration--;
+                clearInterval(timerInterval);
+
+                if (isWork && currentIteration != null) {
+                    isWork = false;
+                    isPause = true;
+                    timeLeft = pauseMin * 60;
+                    startTimer();
+                }
+                else if (isPause) {
+                    isWork = true;
+                    timeLeft = workSec;
+                    startTimer();
+                }
             }
-        }
-    };
+        };
 
     const timeInterval = setInterval(updateTimer, 1000);
 };
