@@ -1,14 +1,15 @@
 # Pomodoro Timer
+Prøv den selv her: https://foxfrostbyte.github.io/Pomodoro-Timer-Website/
 
-Pomodoro start demo:
+Start visning:
 
-<img src="gif/pomDemo.gif" alt="Gif of the pomodoro timer in action." style="border-radius:10px">
+<img src="gif/pomDemo.gif" alt="Gif of the pomodoro timer in action.">
 
 <br>
 
 Etter en utført økt:
 
-<img width="500rem" src="img/pomodoroEnd.png" alt="Image of an ended session in pomodoro." style="border-radius:10px">
+<img width="500rem" src="img/pomodoroEnd.png" alt="Image of an ended session in pomodoro.">
 
 <br>
 
