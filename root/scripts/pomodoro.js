@@ -33,7 +33,6 @@ document.addEventListener("choicesConfirmed", (event) => {
     let isPaused = false;
         
     pauseResumeBtn.addEventListener("click", () => {
-        playBeep("click");
         isPaused = !isPaused;
         if (isPaused) {
             pauseResumeBtn.textContent = "Resume";
@@ -69,8 +68,9 @@ document.addEventListener("choicesConfirmed", (event) => {
             else {
                 if (working && numPauses === 0) {
                     clearInterval(timeInterval);
-                    timerText.textContent = "Congrats! You are done!:)";
+                    timerText.textContent = "Congrats! You are done! ⎚⩊⎚✧";
                     timer.textContent = "You worked for: " + workMin * iterations + "min";
+                    pauseResumeBtn.remove();
                     new Audio("sound/finishLine.wav").play();
                 }
                 else if (working && numPauses !== 0) {

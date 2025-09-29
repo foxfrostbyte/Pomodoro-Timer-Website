@@ -8,12 +8,12 @@ choices.innerHTML =
     <br><br>
     <div class="textAndRange">
         <label id="workText" for="workRange"></label>
-        <input id="workRange" type="range" min="0.1" max="60" value="45" step="5">
+        <input id="workRange" type="range" min="5" max="60" value="45" step="5">
     </div>
     <br><br>
     <div class="textAndRange">
         <label id="pauseText" for="pauseRange"></label>
-        <input id="pauseRange" type="range" min="0.1" max="30" value="15" step="5">
+        <input id="pauseRange" type="range" min="0" max="30" value="15" step="5">
     </div>
     <br><br>
     <div class="textAndRange">
