@@ -2,13 +2,13 @@
 
 Pomodoro start demo:
 
-<img src="root/assets/pomDemo.gif" alt="Gif of the pomodoro timer in action." style="border-radius:10px">
+<img src="gif/pomDemo.gif" alt="Gif of the pomodoro timer in action." style="border-radius:10px">
 
 <br>
 
 Etter en utført økt:
 
-<img src="root/img/pomodoroEnd.png" alt="Image of an ended session in pomodoro." style="border-radius:10px">
+<img src="img/pomodoroEnd.png" alt="Image of an ended session in pomodoro." style="border-radius:10px">
 
 <br>
 

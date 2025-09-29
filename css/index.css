@@ -1,0 +1,132 @@
+@import url('https://fonts.googleapis.com/css2?family=Coming+Soon&family=Lora:ital,wght@0,400..700;1,400..700&display=swap');
+
+:root {
+    --backgroundColor: rgb(176, 115, 58);
+    --backgroundColorHover: rgb(145, 77, 37);
+    --backgroundColorClick: rgb(105, 25, 21);
+    --fontColor: white;
+
+    --transparent: rgba(255, 255, 255, 0);
+
+    --dropColor1: rgb(176, 111, 58);
+    --dropColor2: rgb(176, 107, 58);
+
+    --dropSize: 3rem;
+    --big-size: calc(var(--dropSize) * 2);
+    --min: calc(var(--dropSize) * 0.3);
+}
+
+body {
+    margin: 4rem;
+    background: 
+        linear-gradient(68deg,
+        var(--dropColor1) var(--min),
+        var(--transparent) calc(var(--min) * 1.1)
+        ) var(--dropSize) calc(-1 * var(--dropSize)),
+
+        linear-gradient(-68deg,
+        var(--dropColor1) var(--min),
+        var(--transparent) calc(var(--min) * 1.1)
+        ) calc(-1 * var(--dropSize)) calc(-1 * var(--dropSize)),
+
+        radial-gradient(circle,
+        var(--dropColor1) var(--min),
+        var(--transparent) calc(var(--min) * 1.1)
+        ) 0 0,
+
+        linear-gradient(68deg,
+        var(--dropColor2) var(--min),
+        var(--transparent) calc(var(--min) * 1.1)
+        ) 0 0,
+
+        linear-gradient(-68deg,
+        var(--dropColor2) var(--min),
+        var(--transparent) calc(var(--min) * 1.1)
+        ) 0 0,
+
+        radial-gradient(circle,
+        var(--dropColor2) var(--min),
+        var(--transparent) calc(var(--min) * 1.1)
+        ) var(--dropSize) var(--dropSize)
+    ;
+    background-size: var(--big-size) var(--big-size);
+    background-color: var(--backgroundColor);
+}
+
+html * {
+    font-family: coming soon;
+    color: var(--fontColor);
+}
+
+.textAndRange {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+h1 {
+    font-size: 2.4rem;
+}
+
+.textAndRange label {
+    font-weight: bold;
+    font-size: 1.2rem;
+    width: 10rem;
+}
+
+#confirmBtn {
+    font-weight: bold;
+    font-size: 1.2rem;
+    padding: 1rem;
+    background-color: var(--backgroundColor);
+    border-radius: 0.15rem;
+    border-width: 0.3rem;
+    border-style: double;
+    border-color: var(--fontColor);
+    transition: transform 0.3s ease;
+}
+
+#confirmBtn:hover {
+    transform: scale(1.05);
+    background-color: var(--backgroundColorHover);
+}
+
+#confirmBtn:active {
+    background-color: var(--backgroundColorClick);
+}
+
+/* Code for pomodoro clock UI: */
+#textAndTimer {
+    display: block;
+    width: auto;
+    text-align: left;
+}
+
+#timerText {
+    font-size: 1.9rem;
+}
+
+#timer {
+    font-size: 3.3rem;
+}
+
+#pauseResumeBtn {
+    font-weight: bold;
+    font-size: 1.2rem;
+    padding: 1rem;
+    background-color: var(--backgroundColor);
+    border-radius: 0.15rem;
+    border-width: 0.3rem;
+    border-style: double;
+    border-color: var(--fontColor);
+    transition: transform 0.3s ease;
+}
+
+#pauseResumeBtn:hover {
+    transform: scale(1.05);
+    background-color: var(--backgroundColorHover);
+}
+
+#pauseResumeBtn:active {
+    background-color: var(--backgroundColorClick);
+}
