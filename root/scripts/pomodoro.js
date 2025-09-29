@@ -10,7 +10,6 @@ document.addEventListener("choicesConfirmed", (event) => {
     
     const {workMin, pauseMin, iterations} = event.detail;
 
-    let currentIteration = iterations;
     let numPauses = iterations - 1;
 
     pomodoroTimerHTML.innerHTML = 
@@ -19,6 +18,7 @@ document.addEventListener("choicesConfirmed", (event) => {
         <div id="textAndTimer">
             <p id="timerText">Timer:</p>
             <p id="timer">Loading timer...</p>
+            <p id="currentSesh"></p>
         </div>
         <hr><br>
         <button id="pauseResumeBtn">Pause</button>
@@ -27,21 +27,36 @@ document.addEventListener("choicesConfirmed", (event) => {
 
     const timerText = document.getElementById("timerText");
     const timer = document.getElementById("timer");
+    const currentSesh = document.getElementById("currentSesh");
     const pauseResumeBtn = document.getElementById("pauseResumeBtn");
+
+    let isPaused = false;
+        
+    pauseResumeBtn.addEventListener("click", () => {
+        playBeep("click");
+        isPaused = !isPaused;
+        if (isPaused) {
+            pauseResumeBtn.textContent = "Resume";
+        }
+        else {
+            pauseResumeBtn.textContent = "Pause";
+        }
+    });
 
     startTimer()
 
     // Starting the timer:
     function startTimer() {
-
-        let isWork = true;
-        let isPause = false;
-
+        let currentIteration = 1;
+        let working = true;
         let timeLeft = workMin * 60;
+
         timerText.textContent = "Work left:";
+        currentSesh.textContent = "Session: " + currentIteration + "/" + iterations;
 
         // Updating the timer:
         function updateTimer() {
+            if (isPaused) return;
 
             let minutes = Math.floor(timeLeft / 60);
             let seconds = timeLeft % 60;
@@ -51,26 +66,33 @@ document.addEventListener("choicesConfirmed", (event) => {
             if (timeLeft > 0) {
                 timeLeft--;
             }
-
             else {
-                currentIteration--;
-                clearInterval(timerInterval);
-
-                if (isWork && currentIteration != null) {
-                    isWork = false;
-                    isPause = true;
-                    timeLeft = pauseMin * 60;
-                    startTimer();
+                if (working && numPauses === 0) {
+                    clearInterval(timeInterval);
+                    timerText.textContent = "Congrats! You are done!:)";
+                    timer.textContent = "You worked for: " + workMin * iterations + "min";
+                    new Audio("sound/finishLine.wav").play();
                 }
-                else if (isPause) {
-                    isWork = true;
-                    timeLeft = workSec;
-                    startTimer();
+                else if (working && numPauses !== 0) {
+                    numPauses--;
+                    working = false;
+                    timeLeft = pauseMin * 60;
+                    timerText.textContent = "Pause left:";
+                    new Audio("sound/pause.wav").play();
+                }
+                else if (!working) {
+                    currentIteration++;
+                    currentSesh.textContent = "Session: " + currentIteration + "/" + iterations;
+                    working = true;
+                    timeLeft = workMin * 60;
+                    timerText.textContent = "Work left:";
+                    new Audio("sound/work.wav").play();
                 }
             }
         };
 
     const timeInterval = setInterval(updateTimer, 1000);
+    updateTimer();
 };
 });
 

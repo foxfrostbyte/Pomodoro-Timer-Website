@@ -8,12 +8,12 @@ choices.innerHTML =
     <br><br>
     <div class="textAndRange">
         <label id="workText" for="workRange"></label>
-        <input id="workRange" type="range" min="5" max="60" value="45" step="5">
+        <input id="workRange" type="range" min="0.1" max="60" value="45" step="5">
     </div>
     <br><br>
     <div class="textAndRange">
         <label id="pauseText" for="pauseRange"></label>
-        <input id="pauseRange" type="range" min="0" max="30" value="15" step="5">
+        <input id="pauseRange" type="range" min="0.1" max="30" value="15" step="5">
     </div>
     <br><br>
     <div class="textAndRange">
@@ -21,8 +21,8 @@ choices.innerHTML =
         <input id="iterationRange" type="range" min="1" max="8" value="3" step="1">
     </div>
     <br>
-    <p>Note: If pause is 0 min, iterations is fixed to 1, and vice versa.</p>
-    <p>Example: 45min work, 15min pause, and 3 iterations will yield 3x45min work and 2x15min pause in between those 3 sessions.</p>
+    <p>Note: If pause is 0 min, sessions is fixed to 1, and vice versa.</p>
+    <p>Example: 45min work, 15min pause, and 3 sessions will yield 3x45min work and 2x15min pause in between those 3 sessions.</p>
     <hr><br>
     <button id="confirmBtn">Confirm</button>
     `
@@ -53,12 +53,12 @@ pauseRange.addEventListener("input", () => {
     if (pauseRange.value === "0") {
         iterationRange.value = 1;
         iterationRange.disabled = true;
-        iterationText.textContent = "Iterations: " + iterationRange.value;
+        iterationText.textContent = "Sessions: " + iterationRange.value;
     }
     else {
         if(iterationRange.value === "1") {
             iterationRange.value = 2;
-            iterationText.textContent = "Iterations: " + iterationRange.value;
+            iterationText.textContent = "Sessions: " + iterationRange.value;
         }
         iterationRange.disabled = false;
         pauseText.textContent = "Pause: " + pauseRange.value + " min";
@@ -68,10 +68,10 @@ pauseRange.addEventListener("input", () => {
 // Iteration range logic:
 const iterationText = document.getElementById("iterationText")
 const iterationRange = document.getElementById("iterationRange");
-iterationText.innerText = ("Iterations: " + iterationRange.value);
+iterationText.innerText = ("Sessions: " + iterationRange.value);
 
 iterationRange.addEventListener("input", () => {
-    iterationText.textContent = "Iterations: " + iterationRange.value;
+    iterationText.textContent = "Sessions: " + iterationRange.value;
 
     if (iterationRange.value === "1") {
         pauseRange.value = 0;
@@ -84,7 +84,7 @@ iterationRange.addEventListener("input", () => {
             pauseText.textContent = "Pause: " + pauseRange.value + " min";
         }
         pauseRange.disabled = false;
-        iterationText.textContent = "Iterations: " + iterationRange.value;
+        iterationText.textContent = "Sessions: " + iterationRange.value;
     }
 });
 
