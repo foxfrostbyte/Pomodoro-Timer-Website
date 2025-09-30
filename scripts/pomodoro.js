@@ -61,6 +61,14 @@ document.addEventListener("choicesConfirmed", (event) => {
             let seconds = timeLeft % 60;
             timer.textContent = String(minutes).padStart(2, '0') + ":" + String(seconds).padStart(2, '0');
             
+            // Updates tab to display timer:
+            if (working) {
+                document.title = "Work: " + timer.textContent + " | Pomodoro";
+            }
+            if (!working) {
+                document.title = "Pause: " + timer.textContent + " | Pomodoro";
+            }
+
             // If more time left, increment it:
             if (timeLeft > 0) {
                 timeLeft--;
@@ -74,6 +82,7 @@ document.addEventListener("choicesConfirmed", (event) => {
                     timer.textContent = "You worked for: " + workMin * iterations + "min";
                     pauseResumeBtn.remove();
                     new Audio("sound/finishLine.wav").play();
+                    document.title = "Finished! | Pomodoro";
                 }
                 // Transitioning form work to pause:
                 else if (working && numPauses !== 0) {
