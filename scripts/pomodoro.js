@@ -81,7 +81,9 @@ document.addEventListener("choicesConfirmed", (event) => {
                     timerText.textContent = "Congrats! You are done! ⎚⩊⎚✧";
                     timer.textContent = "You worked for: " + workMin * iterations + "min";
                     pauseResumeBtn.remove();
-                    new Audio("sound/finishLine.wav").play();
+                    const audio = new Audio("sound/finishLine.wav");
+                    audio.volume = 0.5;
+                    audio.play();
                     document.title = "Finished! | Pomodoro";
                 }
                 // Transitioning form work to pause:
@@ -90,7 +92,9 @@ document.addEventListener("choicesConfirmed", (event) => {
                     working = false;
                     timeLeft = pauseMin * 60;
                     timerText.textContent = "Pause left:";
-                    new Audio("sound/pause.wav").play();
+                    const audio = new Audio("sound/pause.wav");
+                    audio.volume = 0.5
+                    audio.play();
                 }
                 // Transitioning from pause to work:
                 else if (!working) {
@@ -99,7 +103,9 @@ document.addEventListener("choicesConfirmed", (event) => {
                     working = true;
                     timeLeft = workMin * 60;
                     timerText.textContent = "Work left:";
-                    new Audio("sound/work.wav").play();
+                    const audio = new Audio("sound/work.wav");
+                    audio.volume = 0.5;
+                    audio.play();
                 }
             }
         };
