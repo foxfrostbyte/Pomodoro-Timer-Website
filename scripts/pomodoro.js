@@ -104,8 +104,8 @@ document.addEventListener("choicesConfirmed", (event) => {
             }
         };
 
-    const timeInterval = setInterval(updateTimer, 1000);
-    updateTimer();
+    const timeInterval = setInterval(updateTimer, 1000); // Runs updateTimer every second (1000ms)
+    updateTimer(); // Avoids first run of updateTimer to take 1 sec
 };
 });
 
